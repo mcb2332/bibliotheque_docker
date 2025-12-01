@@ -1,0 +1,33 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">ID Livre</th>
+    <th scope="col">Titre Livre</th>
+    <th scope="col">Année Publication</th>
+    <th scope="col">ISBN</th>
+    <th scope="col">ID Auteur</th>
+    <th scope="col">Auteur Nom</th>
+    <th scope="col">Nationalité</th>
+    <th scope="col">ID Maison d'édition</th>
+    <th scope="col">Maison d'édition nom</th>
+    <th scope="col">Maison d'édition pays</th>
+  </tr>
+  </thead>
+  <tbody>
+    @for (livre of livreList; track $index) {
+      <tr>
+        <th scope="row">{{livre.id}}</th>
+        <td>{{livre.titre}}</td>
+        <td>{{livre.anneePublication}}</td>
+        <td>{{livre.isbn}}</td>
+        <td>{{livre.auteur?.id}}</td>
+        <td>{{livre.auteur?.nom}} {{livre.auteur?.prenom}}</td>
+        <td>{{livre.auteur?.nationalite}}</td>
+        <td>{{livre.maisonEdition?.id}}</td>
+        <td>{{livre.maisonEdition?.nom}}</td>
+        <td>{{livre.maisonEdition?.pays}}</td>
+      </tr>
+    }
+  </tbody>
+</table>
+

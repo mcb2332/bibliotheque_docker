@@ -1,0 +1,19 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">ID Maison d'édition</th>
+    <th scope="col">Maison d'édition nom</th>
+    <th scope="col">Maison d'édition pays</th>
+  </tr>
+  </thead>
+  <tbody>
+    @for (maisonEdition of maisonEditionList; track $index) {
+      <tr>
+        <th scope="row">{{maisonEdition.id}}</th>
+        <td>{{maisonEdition.nom}}</td>
+        <td>{{maisonEdition.pays}}</td>
+      </tr>
+    }
+  </tbody>
+</table>
+

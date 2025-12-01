@@ -1,0 +1,66 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div class="mb-3">
+      <label for="titreLivre" class="form-label">Titre du livre</label>
+      <input
+        placeholder="Titre du livre"
+        type="text"
+        class="form-control"
+        id="titreLivre"
+        name="titreLivre"
+        [(ngModel)]="livre.titre"
+      >
+    </div>
+    <div class="mb-3">
+      <label for="anneePublicationLivre" class="form-label">Année publication livre</label>
+      <input
+        placeholder="Année publication livre"
+        type="number"
+        class="form-control"
+        id="anneePublicationLivre"
+        name="anneePublicationLivre"
+        [(ngModel)]="livre.anneePublication"
+      >
+    </div>
+    <div class="mb-3">
+      <label for="isbnLivre" class="form-label">ISBN Livre</label>
+      <input
+        placeholder="ISBN Livre"
+        type="number"
+        class="form-control"
+        id="isbnLivre"
+        name="isbnLivre"
+        [(ngModel)]="livre.isbn"
+      >
+    </div>
+  <div class="mb-3">
+    <label for="auteurLivre" class="form-label">Auteur de Livre</label>
+    <select
+      id="auteurLivre"
+      class="form-control"
+      name="Auteur de Livre"
+      [(ngModel)]="livre.auteur"
+      required
+    >
+      <option value="null" disabled>Sélectionnez un auteur</option>
+      @for (auteur of auteurs; track auteur) {
+        <option [ngValue]="auteur">{{ auteur.nom }} - {{ auteur.prenom }} - {{ auteur.nationalite }}</option>
+      }
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="maisonEditionLivre" class="form-label">Maison d'édition de Livre</label>
+    <select
+      id="maisonEditionLivre"
+      class="form-control"
+      name="Maison d'édition de Livre"
+      [(ngModel)]="livre.maisonEdition"
+      required
+    >
+      <option value="null" disabled>Sélectionnez une maison d'édition</option>
+      @for (maisonEdition of maisonsEdition; track maisonEdition) {
+        <option [ngValue]="maisonEdition">{{ maisonEdition.nom }} - {{ maisonEdition.pays }}</option>
+      }
+    </select>
+  </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>

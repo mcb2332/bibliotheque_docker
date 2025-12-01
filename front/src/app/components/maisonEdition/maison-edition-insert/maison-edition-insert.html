@@ -1,0 +1,27 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <div class="mb-3">
+    <label for="nomMaisonEdition" class="form-label">Maison d'édition nom</label>
+    <input
+      type="text"
+      class="form-control"
+      id="nomMaisonEdition"
+      placeholder="Maison d'édition nom"
+      name="nomMaisonEdition"
+      [(ngModel)]="maisonEdition.nom"
+      required
+    >
+  </div>
+  <div class="mb-3">
+    <label for="paysMaisonEdition" class="form-label">Maison d'édition pays</label>
+    <input
+      type="text"
+      class="form-control"
+      id="paysMaisonEdition"
+      placeholder="Maison d'édition pays"
+      name="paysMaisonEdition"
+      [(ngModel)]="maisonEdition.pays"
+      required
+    >
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

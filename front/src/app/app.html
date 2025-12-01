@@ -1,0 +1,70 @@
+<body class="d-flex flex-column min-vh-100 bg-light">
+
+<header class="d-flex justify-content-center py-3 bg-dark">
+  <h3 class="text-light mb-0">BIBLIOTHÈQUE DE LA FISCALITÉ</h3>
+</header>
+
+<div class="container-fluid flex-grow-1 d-flex flex-column">
+  <div class="row flex-nowrap flex-grow-1">
+
+    <nav class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark text-white d-flex flex-column">
+      <div class="px-3 pt-3 w-100">
+        <h3 class="d-flex align-items-center pb-3 mb-3 border-bottom border-secondary w-100">
+          <a routerLink="/" class="text-white text-decoration-none">MENU</a>
+        </h3>
+
+        <ul class="list-unstyled ps-0 w-100">
+          <li class="mb-1">
+            <button class="btn btn-toggle align-items-center rounded collapsed text-white w-100 text-start btn-lg"
+                    data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+              LIVRE
+            </button>
+            <div class="collapse" id="home-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ps-3">
+                <li><a routerLink="livre/allLivres" class="link-light rounded text-decoration-none d-block py-1 fs-6">Tous les livres</a></li>
+                <li><a routerLink="livre/insertLivre" class="link-light rounded text-decoration-none d-block py-1 fs-6">Ajouter un livre</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="mb-1">
+            <button class="btn btn-toggle align-items-center rounded collapsed text-white w-100 text-start btn-lg"
+                    data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+              AUTEURS
+            </button>
+            <div class="collapse" id="dashboard-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ps-3">
+                <li><a routerLink="auteur/allAuteurs" class="link-light rounded text-decoration-none d-block py-1 fs-6">Tous les auteurs</a></li>
+                <li><a routerLink="auteur/insertAuteur" class="link-light rounded text-decoration-none d-block py-1 fs-6">Ajouter un auteur</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="mb-1">
+            <button class="btn btn-toggle align-items-center rounded collapsed text-white w-100 text-start btn-lg"
+                    data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+              MAISON D'ÉDITION
+            </button>
+            <div class="collapse" id="orders-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ps-3">
+                <li><a routerLink="maisonEdition/allMaisonsEdition" class="link-light rounded text-decoration-none d-block py-1 fs-6">Toutes les maisons d'édition</a></li>
+                <li><a routerLink="maisonEdition/insertMaisonEdition" class="link-light rounded text-decoration-none d-block py-1 fs-6">Ajouter une maison d'édition</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="col py-3 bg-light mb-5">
+      <router-outlet></router-outlet>
+    </main>
+
+  </div>
+</div>
+
+<footer class="bg-dark py-2 mt-auto fixed-bottom">
+  <p class="text-light text-center mb-0">© 2025 Company, Inc</p>
+</footer>
+
+</body>

@@ -1,0 +1,41 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form)" class="mb-3">
+  <div class="mb-3">
+    <label class="form-label" for="nomAuteur">Nom d'auteur</label>
+    <input
+      type="text"
+      class="form-control"
+      id="nomAuteur"
+      name="nomAuteur"
+      [(ngModel)]="auteur.nom"
+      placeholder="Nom d'auteur"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="prenomAuteur">Prénom d'auteur</label>
+    <input
+      type="text"
+      class="form-control"
+      id="prenomAuteur"
+      name="prenomAuteur"
+      placeholder="Prénom d'auteur"
+      [(ngModel)]="auteur.prenom"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="nationaliteAuteur">Nationalité d'auteur</label>
+    <input
+      type="text"
+      class="form-control"
+      id="nationaliteAuteur"
+      name="nationaliteAuteur"
+      placeholder="Nationalité d'auteur"
+      [(ngModel)]="auteur.nationalite"
+    />
+  </div>
+
+  <button type="submit" class="btn btn-danger">
+    Submit
+  </button>
+</form>
