@@ -9,14 +9,14 @@
         <version>3.5.7</version>
     </parent>
 
-    <artifactId>exercice-spring-boot</artifactId>
+    <artifactId>bibliotheque-docker</artifactId>
     <packaging>war</packaging>
 
-    <name>Exercice Spring Boot</name>
+    <name>Bibliotheque Docker</name>
 
     <properties>
         <java.version>21</java.version>
-        <start-class>ch.vd.apprenti.Application</start-class>
+        <start-class>epsic.Application</start-class>
         <src.directory.angular>front</src.directory.angular>
     </properties>
 

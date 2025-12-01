@@ -1,9 +1,9 @@
-package ch.vd.apprenti.controller.maisonEdition;
+package epsic.controller.maisonEdition;
 
-import ch.vd.apprenti.beans.MaisonEditionBean;
-import ch.vd.apprenti.controller.AbstractController;
-import ch.vd.apprenti.model.MaisonEdition;
-import ch.vd.apprenti.service.MaisonEditionService;
+import epsic.beans.MaisonEditionBean;
+import epsic.controller.AbstractController;
+import epsic.model.MaisonEdition;
+import epsic.service.MaisonEditionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

@@ -1,15 +1,15 @@
-package ch.vd.apprenti.controller.livre;
+package epsic.controller.livre;
 
-import ch.vd.apprenti.beans.AuteurBean;
-import ch.vd.apprenti.beans.LivreBean;
-import ch.vd.apprenti.beans.MaisonEditionBean;
-import ch.vd.apprenti.controller.AbstractController;
-import ch.vd.apprenti.model.Auteur;
-import ch.vd.apprenti.model.Livre;
-import ch.vd.apprenti.model.MaisonEdition;
-import ch.vd.apprenti.service.AuteurService;
-import ch.vd.apprenti.service.LivreService;
-import ch.vd.apprenti.service.MaisonEditionService;
+import epsic.beans.AuteurBean;
+import epsic.beans.LivreBean;
+import epsic.beans.MaisonEditionBean;
+import epsic.controller.AbstractController;
+import epsic.model.Auteur;
+import epsic.model.Livre;
+import epsic.model.MaisonEdition;
+import epsic.service.AuteurService;
+import epsic.service.LivreService;
+import epsic.service.MaisonEditionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;

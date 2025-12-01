@@ -1,4 +1,4 @@
-package ch.vd.apprenti.model;
+package epsic.model;
 
 import jakarta.persistence.*;
 

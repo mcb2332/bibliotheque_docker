@@ -1,9 +1,9 @@
-package ch.vd.apprenti.controller.auteur;
+package epsic.controller.auteur;
 
-import ch.vd.apprenti.beans.AuteurBean;
-import ch.vd.apprenti.controller.AbstractController;
-import ch.vd.apprenti.model.Auteur;
-import ch.vd.apprenti.service.AuteurService;
+import epsic.beans.AuteurBean;
+import epsic.controller.AbstractController;
+import epsic.model.Auteur;
+import epsic.service.AuteurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

@@ -1,6 +1,5 @@
-package ch.vd.apprenti.model;
+package epsic.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.HashSet;

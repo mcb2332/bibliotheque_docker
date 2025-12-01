@@ -1,10 +1,10 @@
-package ch.vd.apprenti.service;
+package epsic.service;
 
-import ch.vd.apprenti.beans.LivreBean;
-import ch.vd.apprenti.model.Livre;
-import ch.vd.apprenti.repository.AuteurRepository;
-import ch.vd.apprenti.repository.LivreRepository;
-import ch.vd.apprenti.repository.MaisonEditionRepository;
+import epsic.beans.LivreBean;
+import epsic.model.Livre;
+import epsic.repository.AuteurRepository;
+import epsic.repository.LivreRepository;
+import epsic.repository.MaisonEditionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

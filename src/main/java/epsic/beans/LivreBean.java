@@ -1,4 +1,4 @@
-package ch.vd.apprenti.beans;
+package epsic.beans;
 
 public class LivreBean {
     private long id;

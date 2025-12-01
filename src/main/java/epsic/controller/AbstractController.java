@@ -1,4 +1,4 @@
-package ch.vd.apprenti.controller;
+package epsic.controller;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
