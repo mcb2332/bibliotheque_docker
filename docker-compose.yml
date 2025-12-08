@@ -4,6 +4,8 @@ services:
   mysql:
     image: mysql:8.0
     container_name: bibliotheque_db
+    command:
+      - --port=3307
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: ${DB_NAME}
@@ -17,6 +19,7 @@ services:
     container_name: bibliotheque_backend
     environment:
       DB_HOST: mysql
+      DB_PORT: 3307
       DB_NAME: ${DB_NAME}
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
