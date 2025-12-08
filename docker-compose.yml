@@ -34,7 +34,7 @@ services:
       context: ./front
     container_name: bibliotheque_frontend
     ports:
-      - "44200:4200"
+      - "${FRONTEND_PORT}:4200"
     depends_on:
       - backend
 
