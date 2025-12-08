@@ -10,31 +10,19 @@
     </parent>
 
     <artifactId>bibliotheque-docker</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <name>Bibliotheque Docker</name>
 
     <properties>
         <java.version>21</java.version>
         <start-class>epsic.Application</start-class>
-        <src.directory.angular>front</src.directory.angular>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
         <dependency>
@@ -58,6 +46,7 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -65,120 +54,7 @@
     </dependencies>
 
     <build>
-        <resources>
-            <resource>
-                <directory>${basedir}/src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-            <resource>
-                <directory>${src.directory.angular}/dist/front/browser</directory>
-                <filtering>false</filtering>
-                <targetPath>${basedir}/target/${project.artifactId}-${project.version}</targetPath>
-            </resource>
-            <resource>
-                <directory>${src.directory.angular}/dist/front/browser</directory>
-                <filtering>true</filtering>
-                <targetPath>${basedir}/target/${project.artifactId}-${project.version}</targetPath>
-                <includes>
-                    <include>**/*.html</include>
-                    <include>**/*.js</include>
-                    <include>**/*.css</include>
-                    <include>**/*.json</include>
-                </includes>
-            </resource>
-        </resources>
-
         <plugins>
-            <plugin>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                    <warSourceExcludes>**/MANIFEST.MF</warSourceExcludes>
-                    <archive>
-                        <manifest>
-                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                        </manifest>
-                        <addMavenDescriptor>false</addMavenDescriptor>
-                    </archive>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>generate-manifest</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>war</goal>
-                        </goals>
-                        <configuration>
-                            <warSourceDirectory>${project.build.directory}/${project.artifactId}-${project.version}/</warSourceDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-clean-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>clean-angular</id>
-                        <phase>clean</phase>
-                        <goals>
-                            <goal>clean</goal>
-                        </goals>
-                        <configuration>
-                            <failOnError>false</failOnError>
-                            <filesets>
-                                <fileset>
-                                    <directory>${src.directory.angular}/node_modules</directory>
-                                </fileset>
-                                <fileset>
-                                    <directory>${src.directory.angular}/dist</directory>
-                                </fileset>
-                                <fileset>
-                                    <directory>${src.directory.angular}/.angular</directory>
-                                </fileset>
-                            </filesets>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>3.1.0</version>
-                <configuration>
-                    <workingDirectory>${src.directory.angular}</workingDirectory>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>exec-npm-install</id>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>npm</executable>
-                            <arguments>
-                                <argument>install</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>exec-npm-build</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>npm</executable>
-                            <arguments>
-                                <argument>run</argument>
-                                <argument>build-prod</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -190,6 +66,11 @@
                         <arg>-parameters</arg>
                     </compilerArgs>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

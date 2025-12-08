@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: bibliotheque_db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+    ports:
+      - "${DB_PORT}:3307"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  backend:
+    build: .
+    container_name: bibliotheque_backend
+    environment:
+      DB_HOST: mysql
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILE}
+    ports:
+      - "${BACKEND_PORT}:8080"
+    depends_on:
+      - mysql
+
+  frontend:
+    build:
+      context: ./front
+    container_name: bibliotheque_frontend
+    ports:
+      - "44200:4200"
+    depends_on:
+      - backend
+
+volumes:
+  mysql_data:
