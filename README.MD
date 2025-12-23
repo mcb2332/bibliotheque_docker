@@ -1,82 +1,102 @@
-# Docker
+# Projet Bibliothèque
 
-Ce projet utilise **Docker Compose** afin d’orchestrer plusieurs conteneurs représentant différents microservices.
-
-L’objectif est de séparer clairement le frontend, le backend et la base de données, et de distinguer les environnements **développement** et **production**.
+Ce projet est une application de gestion d'une bibliothèque permettant de gérer des **maisons d’édition**, des **auteurs** et des **livres**. Le frontend et le backend communiquent via **API REST**.
 
 ---
 
-# Environnement de Développement (DEV)
+## Technologies utilisées
 
-En développement, l'objectif est de permettre une itération rapide, des logs détaillés et une modification directe du code via des volumes montés.
-
-## Frontend (Angular)
-
-- Le frontend est développé avec **Angular**.
-- Le code source est monté directement depuis la machine locale dans le conteneur grâce à un volume.
-- Toute modification locale est immédiatement visible sans reconstruire l’image.
-- Les logs sont complets, destinés au debugging.
-
-## Backend (Spring Boot)
-
-- Le backend utilise **Java** avec **Spring Boot**.
-- Comme pour le frontend, le code est monté depuis la machine locale afin de permettre un redémarrage rapide et des mises à jour à chaud selon la configuration.
-- Les logs sont plus verbeux pour faciliter le développement.
-- Le conteneur utilise une configuration spécifique à l’environnement de développement (profil `dev`).
-
-## Base de Données (MySQL - DEV)
-
-- En développement, on utilise une **base de données distincte** de celle utilisée en production.
-- Les volumes peuvent être réinitialisés facilement.
-- Les credentials et paramètres DB sont définis dans un fichier d'environnement dédié (ex. `.env.dev`).
-- Les données ne sont pas critiques et peuvent être régénérées.
-
-## Variables d'environnement (DEV)
-
-- Les variables d'environnement sont définies dans un fichier spécifique (ex. `.env.dev`).
-- Ces variables sont injectées automatiquement par Docker Compose.
-- Elles peuvent être modifiées à chaud pour ajuster rapidement la configuration du système.
+- **Backend :**
+    - Java 21
+    - Spring Boot
+    - Spring Data JPA
+    - Hibernate
+    - MySQL
+- **Frontend :**
+    - Angular
+- **Communication :**
+    - REST API
+- **Containerisation :**
+    - Docker
+    - Docker Compose
 
 ---
 
-# Environnement de Production (PROD)
+## Fonctionnalités
 
-En production, l’objectif est la stabilité, la sécurité et l’isolation stricte.
+L'application permet de :
 
-Aucun code source n’est monté depuis la machine hôte : les conteneurs sont immuables.
-
-## Frontend (Angular)
-
-- Le frontend est compilé et déployé dans une image Docker autonome.
-- Aucun volume n’est monté depuis l’extérieur.
-- Les fichiers du frontend ne sont pas modifiables une fois l’image créée.
-
-## Backend (Spring Boot)
-
-- Le backend est packagé dans un jar final puis intégré à une image Docker prête à l’emploi.
-- Le profil actif est `prod`.
-- Les logs sont limités pour éviter les surcharges et respecter les bonnes pratiques de production.
-
-## Base de Données (MySQL - PROD)
-
-- La base de données de production est isolée et différente de celle utilisée en développement.
-- Les données sont persistées via des volumes dédiés.
-- Les accès sont sécurisés via des variables d’environnement propres à la production (ex. `.env.prod`).
-
-## Variables d'environnement (PROD)
-
-- Les variables d'environnement sont définies dans un fichier spécifique (ex. `.env.prod`).
-- Elles ne sont pas modifiables à chaud sur les conteneurs en production.
-- Les valeurs sensibles sont protégées et ne doivent pas être versionnées.
+- **Maisons d’édition :**
+    - Ajouter une maison d’édition
+    - Voir la liste des maisons d’édition
+- **Auteurs :**
+    - Ajouter un auteur
+    - Voir la liste des auteurs
+- **Livres :**
+    - Ajouter un livre en sélectionnant un ou plusieurs auteurs existants et une maison d’édition existante
+    - Voir la liste des livres avec leurs auteurs et maison d’édition associée
 
 ---
 
-# Résumé DEV vs PROD
+## Architecture
+
+L'application suit une architecture **frontend / backend / base de données** :
+
+1. **Frontend (Angular) :**
+    - Interface utilisateur pour interagir avec les fonctionnalités
+    - Appelle le backend via REST API
+
+2. **Backend (Spring Boot) :**
+    - Expose les endpoints REST
+    - Gère la logique métier et la persistance via Spring Data JPA / Hibernate
+    - Connecte à la base de données MySQL
+
+3. **Base de données (MySQL) :**
+    - Stocke les données des livres, auteurs et maisons d’édition
+    - Connectée au backend via JPA/Hibernate
+
+---
+
+## Docker
+
+Le projet utilise **Docker Compose** pour orchestrer les conteneurs suivants :
+
+- Frontend Angular
+- Backend Spring Boot
+- Base de données MySQL
+
+### Environnement de Développement (DEV)
+
+- Permet une itération rapide avec rechargement à chaud
+- Le code source est monté depuis la machine locale
+- Logs détaillés pour le debugging
+- Base de données MySQL dédiée au développement
+- Variables d'environnement définies dans `.env.dev`
+
+### Environnement de Production (PROD)
+
+- Conteneurs immuables
+- Logs limités pour la production
+- Base de données MySQL persistante
+- Variables d'environnement définies dans `.env.prod`
+
+---
+
+## Résumé DEV vs PROD
 
 | Fonctionnalité | Dev | Prod |
 | --- | --- | --- |
 | Code modifiable via volumes | Oui | Non |
 | Logs détaillés | Oui | Non |
-| DB dédiée | Oui | Oui |
-| Variables d’env modifiables à chaud | Oui | Non |
-| Images immuables | Non | Oui |
+| Base de données dédiée | Oui | Oui |
+| Variables d’environnement modifiables à chaud | Oui | Non |
+| Images Docker immuables | Non | Oui |
+
+---
+
+## Instructions de lancement
+
+1. **Cloner le projet :**
+```bash
+git clone <URL_DU_REPO>
+cd <NOM_DU_PROJET>
