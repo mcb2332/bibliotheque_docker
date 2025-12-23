@@ -31,12 +31,48 @@ Deux fichiers `.env` permettent de différencier les environnements :
 
 ---
 
+## 📦 Explication des Dockerfile
+
+### Backend (Java / Spring Boot)
+
+Le Dockerfile backend utilise ... :
+
+```dockerfile
+FROM maven:3.9-eclipse-temurin-21 AS build
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests -X
+
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
+EXPOSE 8080
+CMD ["java", "-jar", "app.jar"]
+```
+
+### FrontEnd (Angular)
+
+```dockerfile
+FROM node:20-bullseye
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+EXPOSE 4200
+CMD ["npm", "start", "--", "--host", "0.0.0.0", "--port", "4200"]
+```
+
+
 ### 🏗️ Commandes de lancement
 
 #### Développement
 ```bash
 docker compose --env-file .env.dev up --build
+```
 
 et 
 
+```bash
 docker compose --env-file .env.dev up --build
+```
