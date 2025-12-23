@@ -1,25 +1,29 @@
-version: '3.8'
-
 services:
   mysql:
     image: mysql:8.0
-    container_name: bibliotheque_db
-    command:
-      - --port=3307
+    container_name: bibliotheque_db_${APP_TAG}
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
       MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "${DB_PORT}:3307"
+      - "${DB_PORT}:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   backend:
+    image: bibliotheque-backend:${APP_TAG}
     build: .
-    container_name: bibliotheque_backend
+    container_name: bibliotheque_backend_${APP_TAG}
     environment:
       DB_HOST: mysql
-      DB_PORT: 3307
+      DB_PORT: 3306
       DB_NAME: ${DB_NAME}
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
@@ -27,12 +31,14 @@ services:
     ports:
       - "${BACKEND_PORT}:8080"
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
 
   frontend:
+    image: bibliotheque-frontend:${APP_TAG}
     build:
       context: ./front
-    container_name: bibliotheque_frontend
+    container_name: bibliotheque_frontend_${APP_TAG}
     ports:
       - "${FRONTEND_PORT}:4200"
     depends_on:
