@@ -1,6 +1,6 @@
 # Bibliothèque - Docker Setup
 
-Ce projet est une application de bibliothèque composée de trois services : **backend Java/Spring Boot**, **frontend Angular**, et **base de données MySQL**, orchestrés via **Docker Compose**.
+Ce projet est une application de bibliothèque composée de trois services : **backend Java/Spring Boot**, **frontend Angular**, et **base de données MySQL**
 
 ---
 
@@ -16,8 +16,8 @@ Ce projet est une application de bibliothèque composée de trois services : **b
 
 - Docker ≥ 20.10  
 - Docker Compose ≥ 2.0  
-- Node.js (pour tests locaux si besoin)  
-- Maven (pour tests locaux si besoin)
+- Node.js   
+- Maven 
 
 ---
 
@@ -35,7 +35,7 @@ Deux fichiers `.env` permettent de différencier les environnements :
 
 ### Backend (Java / Spring Boot)
 
-Le Dockerfile backend utilise ... :
+Le Dockerfile backend utilisé :
 
 ```dockerfile
 FROM maven:3.9-eclipse-temurin-21 AS build
@@ -53,6 +53,8 @@ CMD ["java", "-jar", "app.jar"]
 
 ### FrontEnd (Angular)
 
+Le Dockerfile frontend utilisé :
+
 ```dockerfile
 FROM node:20-bullseye
 WORKDIR /app
@@ -63,6 +65,10 @@ EXPOSE 4200
 CMD ["npm", "start", "--", "--host", "0.0.0.0", "--port", "4200"]
 ```
 
+Explication dans le code dockerfile détailler
+
+---
+
 
 ### 🏗️ Commandes de lancement
 
@@ -71,8 +77,7 @@ CMD ["npm", "start", "--", "--host", "0.0.0.0", "--port", "4200"]
 docker compose --env-file .env.dev up --build
 ```
 
-et 
-
+#### Production
 ```bash
 docker compose --env-file .env.dev up --build
 ```
