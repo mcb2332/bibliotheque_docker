@@ -67,17 +67,16 @@ Le projet utilise **Docker Compose** pour orchestrer les conteneurs suivants :
 
 ### Environnement de Développement (DEV)
 
-- Permet une itération rapide avec rechargement à chaud
-- Le code source est monté depuis la machine locale
+
 - Logs détaillés pour le debugging
-- Base de données MySQL dédiée au développement
+- Base de données MySQL préremplie dédiée au développement
 - Variables d'environnement définies dans `.env.dev`
 
 ### Environnement de Production (PROD)
 
 - Conteneurs immuables
 - Logs limités pour la production
-- Base de données MySQL persistante
+- Base de données MySQL persistante sans données de départ
 - Variables d'environnement définies dans `.env.prod`
 
 ---
