@@ -84,13 +84,11 @@ Le projet utilise **Docker Compose** pour orchestrer les conteneurs suivants :
 
 ## Résumé DEV vs PROD
 
-| Fonctionnalité | Dev | Prod |
-| --- | --- | --- |
-| Code modifiable via volumes | Oui | Non |
-| Logs détaillés | Oui | Non |
-| Base de données dédiée | Oui | Oui |
-| Variables d’environnement modifiables à chaud | Oui | Non |
-| Images Docker immuables | Non | Oui |
+| Fonctionnalité                       | Dev | Prod |
+|--------------------------------------| --- |------|
+| Logs détaillés                       | Oui | Non  |
+| Base de données préremplie           | Oui | Non  |
+| Variables d’environnement | Oui | Oui  |
 
 ---
 
