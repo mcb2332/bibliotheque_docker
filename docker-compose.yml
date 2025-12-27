@@ -21,7 +21,7 @@ services:
     # Volume pour persister les données MySQL => les données ne sont pas perdues si le conteneur est supprimé
     volumes:
       - mysql_data:/var/lib/mysql
-      - ./docker/mysql/${APP_TAG}:/docker-entrypoint-initdb.d
+      - ./mysql/${APP_TAG}:/docker-entrypoint-initdb.d
 
     # Vérification de l’état de santé du service MySQL
     healthcheck:
