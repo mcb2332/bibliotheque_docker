@@ -4,7 +4,7 @@ Ce projet est une application de bibliothèque composée de trois services : **b
 
 ---
 
-## 📂 Structure du projet
+## Structure du projet
 
 - **MySQL** : base de données
 - **Backend** : API REST Spring Boot
@@ -12,7 +12,7 @@ Ce projet est une application de bibliothèque composée de trois services : **b
 
 ---
 
-## ⚙️ Programme utilisé
+## Programme utilisé
 
 - Docker ≥ 20.10  
 - Docker Compose ≥ 2.0  
@@ -21,7 +21,7 @@ Ce projet est une application de bibliothèque composée de trois services : **b
 
 ---
 
-## 🐳 Docker Compose
+## Docker Compose
 
 Les services sont définis dans `docker-compose.yml`.  
 Deux fichiers `.env` permettent de différencier les environnements :
@@ -31,7 +31,7 @@ Deux fichiers `.env` permettent de différencier les environnements :
 
 ---
 
-## 📦 Explication des Dockerfile
+## Explication des Dockerfile
 
 ### Backend (Java / Spring Boot)
 
@@ -70,7 +70,7 @@ Explication dans le code dockerfile détailler
 ---
 
 
-### 🏗️ Commandes de lancement
+### Commandes de lancement
 
 #### Développement
 ```bash
