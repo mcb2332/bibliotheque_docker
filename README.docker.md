@@ -74,10 +74,22 @@ Explication dans le code dockerfile détailler
 
 #### Développement
 ```bash
-docker compose --env-file .env.dev up --build
+docker compose -p bibliotheque-dev --env-file .env.dev up -d
 ```
 
 #### Production
 ```bash
-docker compose --env-file .env.dev up --build
+docker compose -p bibliotheque-prod --env-file .env.prod up -d
 ```
+
+Arrêt des containeurs 
+#### Développement
+```bash
+docker compose -p bibliotheque-dev down -v
+```
+
+#### Production
+```bash
+docker compose -p bibliotheque-prod down -v
+```
+
