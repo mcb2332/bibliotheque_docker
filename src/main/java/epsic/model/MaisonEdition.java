@@ -10,8 +10,7 @@ import java.util.Set;
 public class MaisonEdition {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @SequenceGenerator(name = "maisonEdition_seq", sequenceName = "seq_maisonEdition", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "NOM")

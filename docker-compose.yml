@@ -1,0 +1,73 @@
+services:
+
+  # Service de base de données MySQL
+  mysql:
+    image: mysql:8.0
+
+    # Nom du conteneur (inclut un tag pour différencier les environnements)
+    container_name: bibliotheque_db_${APP_TAG}
+
+    # Variables d’environnement utilisées par MySQL au démarrage
+    environment:
+      # Mot de passe du compte root MySQL
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+
+    ports:
+      - "${DB_PORT}:3306"
+
+    # Volume pour persister les données MySQL => les données ne sont pas perdues si le conteneur est supprimé
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql/${APP_TAG}:/docker-entrypoint-initdb.d
+
+    # Vérification de l’état de santé du service MySQL
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+
+  # Service Backend (API Spring Boot)
+  backend:
+    image: bibliotheque-backend:${APP_TAG}
+    build: .
+    container_name: bibliotheque_backend_${APP_TAG}
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILE}
+
+    # Mapping de ports : accès à l'API depuis l'hôte
+    ports:
+      - "${BACKEND_PORT}:8080"
+
+    # Le backend démarre seulement si MySQL est prêt
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+
+  # Service Frontend (Angular)
+  frontend:
+    image: bibliotheque-frontend:${APP_TAG}
+    build:
+      context: ./front
+    container_name: bibliotheque_frontend_${APP_TAG}
+    ports:
+      - "${FRONTEND_PORT}:4200"
+
+    # Le frontend dépend du backend
+    depends_on:
+      - backend
+
+
+# Déclaration du volume Docker pour MySQL
+volumes:
+  mysql_data:
