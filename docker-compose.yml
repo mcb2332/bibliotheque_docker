@@ -33,7 +33,7 @@ services:
 
   # Service Backend (API Spring Boot)
   backend:
-    image: bibliotheque-backend:${APP_TAG}
+    image: alexlbb/bibliotheque-backend:${APP_TAG}
     build: .
     container_name: bibliotheque_backend_${APP_TAG}
     environment:
@@ -56,7 +56,7 @@ services:
 
   # Service Frontend (Angular)
   frontend:
-    image: bibliotheque-frontend:${APP_TAG}
+    image: alexlbb/bibliotheque-frontend:${APP_TAG}
     build:
       context: ./front
     container_name: bibliotheque_frontend_${APP_TAG}
