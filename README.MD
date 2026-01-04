@@ -58,42 +58,58 @@ L'application suit une architecture **frontend / backend / base de données** :
 ---
 
 ## Docker
-
 Le projet utilise **Docker Compose** pour orchestrer les conteneurs suivants :
+- **Frontend Angular**  
+  Image disponible sur Docker Hub :  
+  `alexlbb/bibliotheque-frontend`
+- **Backend Spring Boot**  
+  Image disponible sur Docker Hub :  
+  `alexlbb/bibliotheque-backend`
+- **Base de données MySQL**  
+  Image officielle :  
+  `mysql`
 
-- Frontend Angular
-- Backend Spring Boot
-- Base de données MySQL
+Les images du **frontend** et du **backend** sont stockées dans des **repositories séparés sur Docker Hub**.  
+`docker compose` récupère directement ces images depuis Docker Hub lors du lancement du projet.
+
+---
 
 ### Environnement de Développement (DEV)
-
-
 - Logs détaillés pour le debugging
 - Base de données MySQL préremplie dédiée au développement
 - Variables d'environnement définies dans `.env.dev`
 
-### Environnement de Production (PROD)
+**Lancement en DEV**
+```bash
+docker compose -p nom_de_dev --env-file .env.dev up
+```
 
+### Environnement de Production (PROD)
 - Conteneurs immuables
 - Logs limités pour la production
 - Base de données MySQL persistante sans données de départ
 - Variables d'environnement définies dans `.env.prod`
 
+**Lancement en PROD**
+```bash
+docker compose -p nom_de_prod --env-file .env.prod up
+```
+
 ---
 
 ## Résumé DEV vs PROD
-
-| Fonctionnalité                       | Dev | Prod |
-|--------------------------------------| --- |------|
-| Logs détaillés                       | Oui | Non  |
-| Base de données préremplie           | Oui | Non  |
-| Variables d’environnement | Oui | Oui  |
+| Fonctionnalité                | Dev | Prod |
+|-------------------------------|-----|------|
+| Logs détaillés                | Oui | Non  |
+| Base de données préremplie    | Oui | Non  |
+| Variables d'environnement     | Oui | Oui  |
 
 ---
 
 ## Instructions de lancement
-
 1. **Cloner le projet :**
 ```bash
 git clone <URL_DU_REPO>
 cd <NOM_DU_PROJET>
+```
+2. **Choisir l'environnement (DEV ou PROD)** et exécuter la commande correspondante.
