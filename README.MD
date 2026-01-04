@@ -83,7 +83,6 @@ docker compose -p nom_de_dev --env-file .env.dev up
 > **Note :** Remplacez `nom_de_dev` par le nom de votre projet Docker Compose pour l'environnement de développement.
 
 ### Environnement de Production (PROD)
-- Conteneurs optimisés et immuables
 - Logs minimaux pour de meilleures performances
 - Base de données MySQL persistante (vide au premier lancement)
 - Variables d'environnement définies dans `.env.prod`
