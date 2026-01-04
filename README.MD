@@ -60,56 +60,64 @@ L'application suit une architecture **frontend / backend / base de données** :
 ## Docker
 Le projet utilise **Docker Compose** pour orchestrer les conteneurs suivants :
 - **Frontend Angular**  
-  Image disponible sur Docker Hub :  
-  `alexlbb/bibliotheque-frontend`
+  Image disponible sur Docker Hub : `alexlbb/bibliotheque-frontend`
 - **Backend Spring Boot**  
-  Image disponible sur Docker Hub :  
-  `alexlbb/bibliotheque-backend`
+  Image disponible sur Docker Hub : `alexlbb/bibliotheque-backend`
 - **Base de données MySQL**  
-  Image officielle :  
-  `mysql`
+  Image officielle : `mysql`
 
 Les images du **frontend** et du **backend** sont stockées dans des **repositories séparés sur Docker Hub**.  
-`docker compose` récupère directement ces images depuis Docker Hub lors du lancement du projet.
+La commande `docker compose` récupère directement ces images depuis Docker Hub lors du lancement du projet.
 
 ---
 
 ### Environnement de Développement (DEV)
 - Logs détaillés pour le debugging
-- Base de données MySQL préremplie dédiée au développement
+- Base de données MySQL préremplie avec des données de test
 - Variables d'environnement définies dans `.env.dev`
 
-**Lancement en DEV**
+**Lancement en DEV :**
 ```bash
 docker compose -p nom_de_dev --env-file .env.dev up
 ```
+> **Note :** Remplacez `nom_de_dev` par le nom de votre projet Docker Compose pour l'environnement de développement.
 
 ### Environnement de Production (PROD)
-- Conteneurs immuables
-- Logs limités pour la production
-- Base de données MySQL persistante sans données de départ
+- Conteneurs optimisés et immuables
+- Logs minimaux pour de meilleures performances
+- Base de données MySQL persistante (vide au premier lancement)
 - Variables d'environnement définies dans `.env.prod`
 
-**Lancement en PROD**
+**Lancement en PROD :**
 ```bash
 docker compose -p nom_de_prod --env-file .env.prod up
 ```
+> **Note :** Remplacez `nom_de_prod` par le nom de votre projet Docker Compose pour l'environnement de production.
 
 ---
 
 ## Résumé DEV vs PROD
-| Fonctionnalité                | Dev | Prod |
+| Fonctionnalité                | DEV | PROD |
 |-------------------------------|-----|------|
-| Logs détaillés                | Oui | Non  |
-| Base de données préremplie    | Oui | Non  |
-| Variables d'environnement     | Oui | Oui  |
+| Logs détaillés                | ✓   | ✗    |
+| Base de données préremplie    | ✓   | ✗    |
+| Variables d'environnement     | ✓   | ✓    |
 
 ---
 
 ## Instructions de lancement
+
 1. **Cloner le projet :**
 ```bash
-git clone <URL_DU_REPO>
-cd <NOM_DU_PROJET>
+   git clone <URL_DU_REPO>
+   cd <NOM_DU_PROJET>
 ```
-2. **Choisir l'environnement (DEV ou PROD)** et exécuter la commande correspondante.
+
+2. **Choisir l'environnement :**
+   - Pour le développement, utilisez la commande DEV ci-dessus
+   - Pour la production, utilisez la commande PROD ci-dessus
+
+3. **Arrêter les conteneurs :**
+```bash
+   docker compose -p <nom_du_projet> down
+```
